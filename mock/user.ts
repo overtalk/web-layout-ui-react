@@ -16,12 +16,14 @@ export default {
     if (userName === 'admin') {
       res.send({
         status: 'ok',
+        token: 'admin',
       });
       return;
     }
     if (userName === 'user') {
       res.send({
         status: 'ok',
+        token: 'user',
       });
       return;
     }

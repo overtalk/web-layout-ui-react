@@ -60,32 +60,32 @@ class Login extends Component<LoginProps, LoginState> {
     this.setState({ type });
   };
 
-  onGetCaptcha = () =>
-    new Promise<boolean>((resolve, reject) => {
-      if (!this.loginForm) {
-        return;
-      }
-      this.loginForm.validateFields(
-        ['mobile'],
-        {},
-        async (err: unknown, values: LoginParamsType) => {
-          if (err) {
-            reject(err);
-          } else {
-            const { dispatch } = this.props;
-            try {
-              const success = await ((dispatch({
-                type: 'login/getCaptcha',
-                payload: values.mobile,
-              }) as unknown) as Promise<unknown>);
-              resolve(!!success);
-            } catch (error) {
-              reject(error);
-            }
-          }
-        },
-      );
-    });
+  // onGetCaptcha = () =>
+  //   new Promise<boolean>((resolve, reject) => {
+  //     if (!this.loginForm) {
+  //       return;
+  //     }
+  //     this.loginForm.validateFields(
+  //       ['mobile'],
+  //       {},
+  //       async (err: unknown, values: LoginParamsType) => {
+  //         if (err) {
+  //           reject(err);
+  //         } else {
+  //           const { dispatch } = this.props;
+  //           try {
+  //             const success = await ((dispatch({
+  //               type: 'login/getCaptcha',
+  //               payload: values.mobile,
+  //             }) as unknown) as Promise<unknown>);
+  //             resolve(!!success);
+  //           } catch (error) {
+  //             reject(error);
+  //           }
+  //         }
+  //       },
+  //     );
+  //   });
 
   renderMessage = (content: string) => (
     <Alert style={{ marginBottom: 24 }} message={content} type="error" showIcon />
