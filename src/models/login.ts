@@ -9,6 +9,8 @@ import { saveToken, removeToken } from '@/utils/token';
 
 export interface StateType {
   status?: 'ok' | 'error';
+  type?: string;
+  mobile?: string;
 }
 
 export interface LoginModelType {
