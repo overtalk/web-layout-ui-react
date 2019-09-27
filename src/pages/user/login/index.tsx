@@ -1,5 +1,4 @@
-import { Alert, Checkbox } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
+import { Alert } from 'antd';
 import React, { Component } from 'react';
 
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
@@ -95,7 +94,7 @@ class Login extends Component<LoginProps, LoginState> {
   render() {
     const { userLogin, submitting } = this.props;
     const { status, type: loginType } = userLogin;
-    const { type, autoLogin } = this.state;
+    const { type } = this.state;
     return (
       <div className={styles.main}>
         <LoginComponents
@@ -106,30 +105,28 @@ class Login extends Component<LoginProps, LoginState> {
             this.loginForm = form;
           }}
         >
-          <Tab key="account" tab={formatMessage({ id: 'user-login.login.tab-login-credentials' })}>
+          <Tab key="account" tab='账户密码登录'>
             {status === 'error' &&
               loginType === 'account' &&
               !submitting &&
-              this.renderMessage(
-                formatMessage({ id: 'user-login.login.message-invalid-credentials' }),
-              )}
+              this.renderMessage('账户或密码错误')}
             <UserName
               name="userName"
-              placeholder={`${formatMessage({ id: 'user-login.login.userName' })}: admin or user`}
+              placeholder='用户名 : admin or user'
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'user-login.userName.required' }),
+                  message: '请输入用户名!',
                 },
               ]}
             />
             <Password
               name="password"
-              placeholder={`${formatMessage({ id: 'user-login.login.password' })}: ant.design`}
+              placeholder='密码 : ant.design'
               rules={[
                 {
                   required: true,
-                  message: formatMessage({ id: 'user-login.password.required' }),
+                  message: '请输入密码！',
                 },
               ]}
               onPressEnter={e => {
@@ -140,26 +137,9 @@ class Login extends Component<LoginProps, LoginState> {
               }}
             />
           </Tab>
-          <div>
-            <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
-              <FormattedMessage id="user-login.login.remember-me" />
-            </Checkbox>
-            <a style={{ float: 'right' }} href="">
-              <FormattedMessage id="user-login.login.forgot-password" />
-            </a>
-          </div>
           <Submit loading={submitting}>
-            <FormattedMessage id="user-login.login.login" />
+            登录
           </Submit>
-          {/* <div className={styles.other}>
-            <FormattedMessage id="user-login.login.sign-in-with" />
-            <Icon type="alipay-circle" className={styles.icon} theme="outlined" />
-            <Icon type="taobao-circle" className={styles.icon} theme="outlined" />
-            <Icon type="weibo-circle" className={styles.icon} theme="outlined" />
-            <Link className={styles.register} to="/user/register">
-              <FormattedMessage id="user-login.login.signup" />
-            </Link>
-          </div> */}
         </LoginComponents>
       </div>
     );
