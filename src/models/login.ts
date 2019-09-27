@@ -4,13 +4,11 @@ import { Effect } from 'dva';
 import { stringify } from 'querystring';
 
 import { fakeAccountLogin } from '@/services/login';
-import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
+import { saveToken, removeToken } from '@/utils/token';
 
 export interface StateType {
   status?: 'ok' | 'error';
-  type?: string;
-  currentAuthority?: 'user' | 'guest' | 'admin';
 }
 
 export interface LoginModelType {
@@ -61,6 +59,8 @@ const Model: LoginModelType = {
     },
 
     *logout(_, { put }) {
+      // logout remove token
+      removeToken()
       const { redirect } = getPageQuery();
       // redirect
       if (window.location.pathname !== '/user/login' && !redirect) {
@@ -78,11 +78,13 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      // 设置权限
+      // setAuthority(payload.currentAuthority);
+      // login set token
+      saveToken(payload.token)
       return {
         ...state,
         status: payload.status,
-        type: payload.type,
       };
     },
   },

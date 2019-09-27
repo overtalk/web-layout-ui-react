@@ -8,6 +8,7 @@ export default {
     name: 'XXOO 管理员',
     avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',
+    authority: 'guest',
   },
   // GET POST 可省略
   'POST /api/login/account': (req: Request, res: Response) => {
@@ -16,7 +17,6 @@ export default {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'admin',
       });
       return;
     }
@@ -24,14 +24,12 @@ export default {
       res.send({
         status: 'ok',
         type,
-        currentAuthority: 'user',
       });
       return;
     }
     res.send({
       status: 'error',
       type,
-      currentAuthority: 'guest',
     });
   },
 };

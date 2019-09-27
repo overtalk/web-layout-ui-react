@@ -115,6 +115,7 @@ export default {
               name: 'welcome',
               icon: 'smile',
               component: './Welcome',
+              authority: ['admin', 'user'],
             },
             {
               component: './404',

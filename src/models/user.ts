@@ -2,11 +2,14 @@ import { Effect } from 'dva';
 import { Reducer } from 'redux';
 
 import { queryCurrent } from '@/services/user';
+import { setAuthority } from '@/utils/authority';
+import { reloadAuthorized } from '@/utils/Authorized';
 
 export interface CurrentUser {
   avatar?: string;
   name?: string;
   userid?: string;
+  authority?: 'user' | 'guest' | 'admin';
 }
 
 export interface UserModelState {
@@ -43,6 +46,8 @@ const UserModel: UserModelType = {
 
   reducers: {
     saveCurrentUser(state, action) {
+      setAuthority(action.payload.authority)
+      reloadAuthorized();
       return {
         ...state,
         currentUser: action.payload || {},
