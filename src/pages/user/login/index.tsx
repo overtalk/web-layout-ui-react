@@ -8,12 +8,12 @@ import { FormComponentProps } from 'antd/es/form';
 // import Link from 'umi/link';
 import { connect } from 'dva';
 import { StateType } from '@/models/login';
-import LoginComponents from './components/Login';
+import LoginComponents from '@/components/Login';
 import styles from './style.less';
 import { LoginParamsType } from '@/services/login';
 import { ConnectState } from '@/models/connect';
 
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginComponents;
+const { Tab, UserName, Password, Submit } = LoginComponents;
 
 interface LoginProps {
   dispatch: Dispatch<AnyAction>;
