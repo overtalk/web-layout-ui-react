@@ -1,9 +1,10 @@
-import { DefaultFooter, MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
+import { MenuDataItem, getMenuData, getPageTitle } from '@ant-design/pro-layout';
 import DocumentTitle from 'react-document-title';
 import Link from 'umi/link';
 import React from 'react';
 import { connect } from 'dva';
 
+import  FooterView  from '@/components/GlobalFooter/footer'
 import { ConnectProps, ConnectState } from '@/models/connect';
 import logo from '../assets/logo.svg';
 import styles from './UserLayout.less';
@@ -48,7 +49,7 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
           </div>
           {children}
         </div>
-        <DefaultFooter />
+        <FooterView />
       </div>
     </DocumentTitle>
   );
