@@ -78,8 +78,6 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      // 设置权限
-      // setAuthority(payload.currentAuthority);
       // login set token
       saveToken(payload.token)
       return {
