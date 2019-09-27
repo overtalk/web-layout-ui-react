@@ -3,7 +3,6 @@ import DocumentTitle from 'react-document-title';
 import Link from 'umi/link';
 import React from 'react';
 import { connect } from 'dva';
-import { formatMessage } from 'umi-plugin-react/locale';
 
 import { ConnectProps, ConnectState } from '@/models/connect';
 import logo from '../assets/logo.svg';
@@ -33,7 +32,6 @@ const UserLayout: React.SFC<UserLayoutProps> = props => {
       title={getPageTitle({
         pathname: location.pathname,
         breadcrumb,
-        formatMessage,
         ...props,
       })}
     >
